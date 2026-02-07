@@ -1,0 +1,16 @@
+services:
+  airflow:
+    build: .
+    container_name: airflow
+    environment:
+      AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+      AIRFLOW__WEBSERVER__BASE_URL: "http://localhost:8080"
+    env_file:
+      - .env
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./tests:/opt/airflow/tests
+      - ../sql:/opt/airflow/sql
+    ports:
+      - "8080:8080"
+    command: standalone

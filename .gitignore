@@ -1,0 +1,60 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfvars
+tfplan
+outputs.json
+terraform.tfstate.lock.info
+
+# Python
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Airflow
+airflow/airflow.db
+airflow/airflow.db-shm
+airflow/airflow.db-wal
+airflow/logs/
+airflow/webserver_config.py
+
+# Environment files - NEVER COMMIT THESE!
+.env
+.env.local
+*.pem
+*.key
+
+# Temporary files
+add_connection.py
+*.tar.gz
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Documentation (except README)
+docs/
+
+# Logs
+*.log
