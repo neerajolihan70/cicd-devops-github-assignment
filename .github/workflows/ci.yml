@@ -32,15 +32,17 @@ jobs:
     - name: Initialize Airflow database
       run: |
         export AIRFLOW_HOME=${{ github.workspace }}/airflow
+        export AIRFLOW__CORE__LOAD_EXAMPLES=False
         airflow db migrate
     
     - name: Run DAG import checks
       run: |
         export AIRFLOW_HOME=${{ github.workspace }}/airflow
+        export AIRFLOW__CORE__LOAD_EXAMPLES=False
         python -c "
         from airflow.models import DagBag
         import sys
-        dagbag = DagBag()
+        dagbag = DagBag(dag_folder='airflow/dags', include_examples=False)
         print(f'✅ DAGs loaded: {len(dagbag.dags)}')
         if dagbag.import_errors:
             print(f'❌ Import errors found: {dagbag.import_errors}')
@@ -52,4 +54,5 @@ jobs:
     - name: Run pytest tests
       run: |
         export AIRFLOW_HOME=${{ github.workspace }}/airflow
+        export AIRFLOW__CORE__LOAD_EXAMPLES=False
         pytest airflow/tests -v --tb=short
